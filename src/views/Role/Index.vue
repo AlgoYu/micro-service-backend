@@ -41,7 +41,7 @@
                 </el-table-column>
                 <el-table-column label="操作" align="center">
                     <template slot-scope="scope">
-                        <el-button type="info" @click="edit(scope.row)" v-auth="'ROLE:EDIT'"
+                        <el-button type="info" @click="edit(scope.row)" v-auth="'ROLE:MODIFY'"
                             >编辑</el-button
                         >
                         <el-button type="danger" @click="remove(scope.row)" v-auth="'ROLE:DELETE'"

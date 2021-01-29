@@ -208,7 +208,7 @@ export default {
                     // 添加路由
                     this.$router.addRoutes(temp);
                     // 导入权限信息
-                    this.$store.commit('updateApis',result.data.apis);
+                    this.$store.commit("updateApis", result.data.apis);
                 }
             });
         },
@@ -221,22 +221,14 @@ export default {
                         type: "warning",
                     })
                         .then(() => {
-                            // logout(
-                            //     {
-                            //         refreshToken: this.$store.state
-                            //             .refreshToken,
-                            //     },
-                            //     (result) => {
-                            //         if (result.success) {
-                            //             this.$store.commit("deleteToken");
-                            //             this.$router.push({
-                            //                 path: "/Login",
-                            //             });
-                            //         }
-                            //     }
-                            // );
+                            this.$store.commit("deleteToken");
+                            this.$router.push({
+                                path: "/Login",
+                            });
                         })
-                        .catch(() => {});
+                        .catch(() => {
+                            
+                        });
                     break;
             }
         },
