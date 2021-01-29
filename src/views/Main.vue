@@ -165,7 +165,6 @@ import { apiUrl, icons } from "@/global/Global.js";
 import AccountApi from "@/api/module/AccountApi.js";
 import AuthorityApi from "@/api/module/AuthorityApi.js";
 import { createRoutes } from "@/util/RouterUtil.js";
-import { logout } from "@/api/module/LoginApi.js";
 
 export default {
     name: "Management",
@@ -222,20 +221,20 @@ export default {
                         type: "warning",
                     })
                         .then(() => {
-                            logout(
-                                {
-                                    refreshToken: this.$store.state
-                                        .refreshToken,
-                                },
-                                (result) => {
-                                    if (result.success) {
-                                        this.$store.commit("deleteToken");
-                                        this.$router.push({
-                                            path: "/Login",
-                                        });
-                                    }
-                                }
-                            );
+                            // logout(
+                            //     {
+                            //         refreshToken: this.$store.state
+                            //             .refreshToken,
+                            //     },
+                            //     (result) => {
+                            //         if (result.success) {
+                            //             this.$store.commit("deleteToken");
+                            //             this.$router.push({
+                            //                 path: "/Login",
+                            //             });
+                            //         }
+                            //     }
+                            // );
                         })
                         .catch(() => {});
                     break;

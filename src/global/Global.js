@@ -1,5 +1,5 @@
 // 后端地址
-const apiUrl = "http://127.0.0.1:8888"
+const apiUrl = "http://localhost:10000"
 
 // 菜单图标
 const icons = new Map();

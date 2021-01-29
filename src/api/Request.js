@@ -16,7 +16,7 @@ export async function request(method, url, data, callback) {
 		url: url,
 		headers: {
 			'Content-Type': 'application/json',
-			'Token': Store.state.accessToken
+			'Authorization': Store.state.accessToken
 		}
 	};
 	// 判断数据加在URL还是Body
@@ -29,11 +29,31 @@ export async function request(method, url, data, callback) {
 	Axios(info).then((res) => {
 		// 如果已经Token过期则请求刷新Token
 		if(res.data.code == 401){
-			info.method = 'get';
-			info.url = '/api/token/refreshToken';
-			info.params = {
+			info.method = 'post';
+			info.url = '/oauth/token';
+			info.data = {
+				'client_id': 'management',
+				'client_secret': 'E10ADC3949BA59ABBE56E057F20F883E',
+				'grant_type': 'refresh_token',
 				'refreshToken': Store.state.refreshToken
 			}
+			info.transformRequest = [
+				function (data) {
+					// Do whatever you want to transform the data
+					let ret = "";
+					for (let it in data) {
+						ret +=
+							encodeURIComponent(it) +
+							"=" +
+							encodeURIComponent(data[it]) +
+							"&";
+					}
+					return ret;
+				},
+			],
+			info.headers = {
+				"Content-Type": "application/x-www-form-urlencoded",
+			};
 			Axios(info).then((res)=>{
 				console.log(res);
 				// 如果请求成功 刷新Token后再次请求

@@ -14,13 +14,13 @@ export default new Vuex.Store({
 		// 更新Token
 		updateToken(state, data) {
 			// 存入状态
-			state.accessToken = data.accessToken;
-			state.refreshToken = data.refreshToken;
+			state.accessToken = data.token_type + " " +data.access_token;
+			state.refreshToken = data.refresh_token;
 			state.id = data.id;
 			// 存入LocalStorage
-			localStorage.setItem("accessToken", data.accessToken);
-			localStorage.setItem("refreshToken", data.refreshToken);
-			localStorage.setItem("id", data.id);
+			localStorage.setItem("accessToken", state.accessToken);
+			localStorage.setItem("refreshToken", state.refreshToken);
+			localStorage.setItem("id", state.id);
 		},
 		// 删除Token
 		deleteToken(state) {
