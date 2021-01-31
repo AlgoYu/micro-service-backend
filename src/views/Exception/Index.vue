@@ -19,6 +19,10 @@
         <el-table :data="table.data" style="width: 100%">
             <el-table-column prop="id" label="ID" align="center">
             </el-table-column>
+            <el-table-column prop="service" label="服务实例" align="center">
+            </el-table-column>
+            <el-table-column prop="host" label="主机" align="center">
+            </el-table-column>
             <el-table-column prop="uri" label="URI" align="center">
                 <template slot-scope="scope">
                     <el-link
@@ -110,12 +114,12 @@ export default {
             param: {
                 page: 1,
                 size: 10,
-                keyWord: "",
+                keyWord: ""
             },
             table: {
                 total: 0,
-                data: [],
-            },
+                data: []
+            }
         };
     },
     created() {
@@ -140,7 +144,7 @@ export default {
                     this.init();
                 }
             });
-        },
+        }
     },
 };
 </script>
