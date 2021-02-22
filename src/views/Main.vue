@@ -10,7 +10,7 @@
                     class="transition-animations"
                     icon="el-icon-user-solid"
                     :size="isCollapse ? 35 : 100"
-                    :src="account.picture"
+                    src="https://store.machine-geek.cn/Administrator.jpg"
                     style="border: #000000 3px solid"
                 ></el-avatar>
                 <div>

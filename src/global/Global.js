@@ -15,6 +15,7 @@ icons.set("ROLE","icon-role");
 icons.set("AUTHORITY","icon-quanxian");
 icons.set("DOCUMENT","icon-order_fill");
 icons.set("SYSTEM","icon-createtask");
+icons.set("TRACK","icon-share_fill");
 
 // 导出
 export { apiUrl, icons};

@@ -129,7 +129,7 @@ export default {
                             params: this.form,
                             responseType: "blob",
                             headers: {
-                                Token: this.$store.state.accessToken,
+                                Authorization: this.$store.state.accessToken,
                             },
                         })
                         .then((res) => {

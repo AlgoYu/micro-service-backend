@@ -27,7 +27,7 @@
                             class="transition-animations"
                             icon="el-icon-user-solid"
                             :size="50"
-                            :src="apiUrl + scope.row.picture"
+                            src="https://store.machine-geek.cn/Administrator.jpg"
                             style="border: #000000 2px solid"
                         ></el-avatar>
                         <span style="margin-left: 10px">{{
