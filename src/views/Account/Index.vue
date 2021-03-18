@@ -86,12 +86,14 @@
                 :total="table.total"
                 style="text-align: center"
                 v-if="table.data.length > 0"
+                :current-page="param.page"
+                @current-change="getPage"
             >
             </el-pagination>
         </div>
         <!-- 表单 -->
         <el-dialog
-            title="角色"
+            title="账户"
             :visible.sync="formDialog"
             width="600px"
             :close-on-click-modal="false"
@@ -209,7 +211,7 @@ export default {
             },
             table: {
                 total: 0,
-                data: [],
+                data: []
             },
             selector: {
                 data: [],

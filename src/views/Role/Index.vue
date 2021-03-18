@@ -54,6 +54,8 @@
                 layout="prev, pager, next"
                 :total="table.total"
                 style="text-align: center"
+                :current-page="param.page"
+                @current-change="getPage"
             >
             </el-pagination>
         </div>
