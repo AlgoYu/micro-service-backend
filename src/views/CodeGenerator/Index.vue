@@ -32,6 +32,8 @@
                 layout="prev, pager, next"
                 :total="table.total"
                 style="text-align: center"
+                :current-page="param.page"
+                @current-change="pageChange"
             >
             </el-pagination>
         </div>
@@ -109,6 +111,9 @@ export default {
     },
     methods: {
         init() {
+            this.getPage();  
+        },
+        getPage(){
             CodeGeneratorAPI.paging(this.param, (result) => {
                 console.log(result);
                 if (result.success) {
@@ -116,6 +121,11 @@ export default {
                     this.table.data = result.data.records;
                 }
             });
+        },
+        // 更改分页
+        pageChange(page){
+            this.param.page = page;
+            this.getPage();
         },
         showDialog(row) {
             this.form.tableName = row.tableName;

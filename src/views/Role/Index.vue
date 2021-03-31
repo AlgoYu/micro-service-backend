@@ -50,12 +50,13 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <!-- 分页 -->
             <el-pagination
                 layout="prev, pager, next"
                 :total="table.total"
                 style="text-align: center"
                 :current-page="param.page"
-                @current-change="getPage"
+                @current-change="pageChange"
             >
             </el-pagination>
         </div>
@@ -184,6 +185,10 @@ export default {
                 }
                 this.load = false;
             });
+        },
+        pageChange(page){
+            this.param.page = page;
+            this.getPage();
         },
         remove(row) {
             this.$confirm("确认删除这条数据吗?", "警告", {

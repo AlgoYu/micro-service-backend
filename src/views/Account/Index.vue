@@ -87,7 +87,7 @@
                 style="text-align: center"
                 v-if="table.data.length > 0"
                 :current-page="param.page"
-                @current-change="getPage"
+                @current-change="pageChange"
             >
             </el-pagination>
         </div>
@@ -303,6 +303,11 @@ export default {
                 }
                 this.load = false;
             });
+        },
+        // 更改分页
+        pageChange(page){
+            this.param.page = page;
+            this.getPage();
         },
         // 保存操作
         save() {

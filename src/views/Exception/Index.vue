@@ -96,11 +96,12 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div></div>
         <el-pagination
             layout="prev, pager, next"
             :total="table.total"
             style="text-align: center"
+            :current-page="param.page"
+            @current-change="pageChange"
         >
         </el-pagination>
     </div>
@@ -127,12 +128,20 @@ export default {
     },
     methods: {
         init() {
+            this.getPage();
+        },
+        getPage(){
             paging(this.param, (result) => {
                 if (result.success) {
                     this.table.total = parseInt(result.data.total);
                     this.table.data = result.data.records;
                 }
             });
+        },
+        // 更改分页
+        pageChange(page){
+            this.param.page = page;
+            this.getPage();
         },
         clearSytemException() {
             clear((result) => {
@@ -145,7 +154,7 @@ export default {
                 }
             });
         }
-    },
+    }
 };
 </script>
 
