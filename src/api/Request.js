@@ -17,7 +17,8 @@ export async function request(method, url, data, callback) {
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': Store.state.accessToken
-		}
+		},
+		timeout: 1000
 	};
 	// 判断数据加在URL还是Body
 	if (method === 'get' || method === 'delete') {
@@ -37,6 +38,7 @@ export async function request(method, url, data, callback) {
 				'grant_type': 'refresh_token',
 				'refreshToken': Store.state.refreshToken
 			}
+			// 转换数据拼接在URI
 			info.transformRequest = [
 				function (data) {
 					// Do whatever you want to transform the data
@@ -55,7 +57,6 @@ export async function request(method, url, data, callback) {
 				"Content-Type": "application/x-www-form-urlencoded",
 			};
 			Axios(info).then((res)=>{
-				console.log(res);
 				// 如果请求成功 刷新Token后再次请求
 				if(res.data.success){
 					Store.commit("updateToken", res.data.data);
@@ -66,11 +67,17 @@ export async function request(method, url, data, callback) {
 						path: "/Login"
 					});
 				}
+			}).catch((err)=>{
+				// 请求失败则跳转到登录界面
+				Router.push({
+					path: "/Login"
+				});
 			});
 			return;
 		}
 		// 如果权限不足
 		if(res.data.code == 403){
+
 		}
 		// 如果请求成功有回调函数
 		if (callback != null) {
@@ -78,5 +85,9 @@ export async function request(method, url, data, callback) {
 		}
 	// 网络请求失败处理
 	}).catch((err) => {
+		// 请求失败则跳转到登录界面
+		Router.push({
+			path: "/Login"
+		});
 	})
 }

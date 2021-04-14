@@ -127,10 +127,14 @@ export default {
             this.param.page = page;
             this.getPage();
         },
+        // 打开弹窗
         showDialog(row) {
             this.form.tableName = row.tableName;
+            this.form.moduleName = "";
+            this.form.packageName = "";
             this.formDialog = true;
         },
+        // 生成代码
         generate() {
             this.$refs["form"].validate((valid) => {
                 if (valid) {
